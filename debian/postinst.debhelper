@@ -1,0 +1,12 @@
+# Automatically added by dh_installdocs
+if [ "$1" = "configure" ]; then
+	if [ -d /usr/doc -a ! -e /usr/doc/creatures-sprites -a -d /usr/share/doc/creatures-sprites ]; then
+		ln -sf ../share/doc/creatures-sprites /usr/doc/creatures-sprites
+	fi
+fi
+# End automatically added section
+# Automatically added by dh_installdocs
+if [ "$1" = configure ] && command -v install-docs >/dev/null 2>&1; then
+	install-docs -i /usr/share/doc-base/creatures-sprites-help
+fi
+# End automatically added section

@@ -1,0 +1,22 @@
+Creatures Sprites GIMP PlugIn 
+====================
+
+Copyright (C) 2001  Tina Hirsch <tehirsch@nexgo.de>
+
+
+This package features currently:
+
+ - Loading and Saving of blk images
+
+
+You need the libc16 from cvs to build and run this package.
+To build and install the sourcepackage, just...
+
+	./configure
+	make
+	make install
+
+...and it's there.
+
+Enjoy it,
+Tina

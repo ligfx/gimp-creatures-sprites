@@ -1,0 +1,13 @@
+Source: creatures-sprites
+Section: graphics
+Priority: optional
+Maintainer: Tina Hirsch <tehirsch@nexgo.de>
+Standards-Version: 3.0.1
+
+Package: creatures-sprites
+Architecture: any
+Depends: gimp1.2 (>= 1.2.0), ${shlibs:Depends}
+Description: .A plugin to load and save any image format of Creatures
+ .
+ Support currently saving and loading of blk images.
+ homepage: http://c3-ds-tools.sf.net

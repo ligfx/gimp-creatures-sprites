@@ -1,0 +1,7 @@
+- Load and save:
+	* c16 images
+	* s16 images
+	* probably spr images
+
+- Implement a special interface like the one for animations
+  to handle the multiple pics in c16/s16 files.

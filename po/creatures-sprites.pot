@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2001-09-02 18:25+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/main.c:121
+msgid "Loads files in blk image format"
+msgstr ""
+
+#: src/main.c:122
+msgid "This plug-in loads Creatures backgroundimage files"
+msgstr ""
+
+#: src/main.c:135
+msgid "Saves files in blk image format"
+msgstr ""
+
+#: src/main.c:136
+msgid "This plug-in saves Creatures backgroundimage files"
+msgstr ""
+
+#: src/main.c:257
+msgid ""
+"Can't allocate new image\n"
+"or file does not exist!\n"
+msgstr ""
+
+#: src/main.c:262
+msgid "Background"
+msgstr ""
