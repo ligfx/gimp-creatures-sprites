@@ -260,14 +260,6 @@ static gint load_blkimage (char *filename)
     gimp_quit();
     
   gimp_image_set_filename (image, filename);
-  layer = gimp_layer_new (image, _("Background"), width, height, GIMP_RGB_IMAGE,
-                          100, GIMP_NORMAL_MODE);
-  gimp_image_add_layer (image, layer, -1);
-
-  drawable = gimp_drawable_get (layer);
-  gimp_pixel_rgn_init (&pixel_rgn, drawable, 0, 0, drawable->width,
-                       drawable->height, TRUE, FALSE);
-  pixel = c16_sprite_get_blk_image (sprite);
 
   basename = strrchr (filename, G_DIR_SEPARATOR);
   if (basename == NULL)
@@ -280,16 +272,28 @@ static gint load_blkimage (char *filename)
   sprintf (name, _("Loading %s, please wait..."), basename);
   gimp_progress_init ( name );
 
-  percentagesteps = (gdouble)100/height;
+  layer = gimp_layer_new (image, _("Background"), width, height, GIMP_RGB_IMAGE,
+                          100, GIMP_NORMAL_MODE);
+  gimp_image_add_layer (image, layer, -1);
+
+  drawable = gimp_drawable_get (layer);
+  gimp_pixel_rgn_init (&pixel_rgn, drawable, 0, 0, drawable->width,
+                       drawable->height, TRUE, FALSE);
+  pixel = c16_sprite_get_blk_image (sprite);
+
+
+
+  percentagesteps = (gdouble)1/height;
   
   /* draw the image */
   for(i=0; i<height; i++)
     {
       gimp_pixel_rgn_set_rect (&pixel_rgn, pixel[i], 0, i, drawable->width, 1);
       g_free (pixel[i]);
-      if(percentagesteps * (i+1) <= 100)
+      if(percentagesteps * (i+1) <= 1)
         gimp_progress_update (percentagesteps * (i + 1));
     }
+  
   
   g_free (pixel);
 	g_free (name);
@@ -313,6 +317,9 @@ save_blkimage (char* filename,
   div_t euklid;
   GimpExportReturnType export;
   gint success;
+  gchar *name;
+  gchar *basename;
+  gdouble percentagesteps;
   
   export = GIMP_EXPORT_EXPORT;
   type = gimp_drawable_type (drawable_ID);
@@ -321,7 +328,7 @@ save_blkimage (char* filename,
   /* export non-rgb, alpha and multiple layer images */
   if(type != GIMP_RGB_IMAGE)
     {
-      gimp_ui_init ("creatures-sprites", FALSE);
+      gimp_ui_init ("blkimage", FALSE);
       export = gimp_export_image (&image_ID, &drawable_ID, "BLK",
                                   GIMP_EXPORT_CAN_HANDLE_RGB);
     }
@@ -330,6 +337,18 @@ save_blkimage (char* filename,
    * therefore only accept (exported) rgb images */ 
   if( export == GIMP_EXPORT_EXPORT)
     {
+      basename = strrchr (filename, G_DIR_SEPARATOR);
+      if (basename == NULL)
+        basename = filename;
+      else
+        basename++;
+      
+      name = g_new (gchar,
+                    strlen (_("Saving %s, please wait...")) + strlen (basename) - 1);
+      sprintf (name, _("Saving %s, please wait..."), basename);
+      
+      gimp_progress_init ( name );
+      
       drawable = gimp_drawable_get (drawable_ID);
       
       gimp_pixel_rgn_init (&pixel_rgn, drawable, 0, 0, drawable->width,
@@ -350,14 +369,19 @@ save_blkimage (char* filename,
       for(i=0; i<blkh*BLK_BLOCK_SIZE; i++)
         pixels[i]= g_new0 (guchar, blkw * 3 * BLK_BLOCK_SIZE);
 
+
+      percentagesteps = (gdouble)1/drawable->height;
+
       /* read the colordata and put it into pixels */
       for(i=0; i<drawable->height; i++)
         {
           gimp_pixel_rgn_get_rect (&pixel_rgn, pixels[i], 0, i,
                                    drawable->width, 1);
+          if(percentagesteps * (i+1) <=1)
+            gimp_progress_update (percentagesteps * (i + 1));
         }
 
-      /* pic holds the blocks of which a blk acutally consists */
+      /* pic holds the blocks of which a blk actually consists */
       pic = g_new (C16Image_p, blkh * blkw);
 
       ptr = g_new (guchar*, BLK_BLOCK_SIZE);

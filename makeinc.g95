@@ -1,0 +1,26 @@
+# Programm to 'clean' after compilation
+#
+RM=rm -f
+
+# Compiler
+#
+CC=gcc
+
+
+#
+# prefix is the gimp installationpath and plugindir the
+# plugin directory of the gimp
+#
+DESTDIR=
+PREFIX=c:/Programme/GIMP
+PLUGINDIR=$(PREFIX)/plug-ins
+BINDIR=$(PREFIX)/bin
+PLUGIN_NAME = creatures-sprites
+LOCALEDIR = $(PREFIX)/locale
+DATADIR = $(PREFIX)/help
+
+
+# package dirs
+LOCALSDIR = po
+SRCDIR = src
+

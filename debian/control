@@ -7,7 +7,7 @@ Standards-Version: 3.0.1
 
 Package: creatures-sprites
 Architecture: any
-Depends: gimp1.2 (>= 1.2.0), ${shlibs:Depends}
+Depends: gimp1.2 (>= 1.2.0), libc16 (>= 0.3), ${shlibs:Depends}
 Description: .A plugin to load and save any image format of Creatures series 
  .
  Supports currently blk/c16/s16

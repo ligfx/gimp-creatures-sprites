@@ -1,0 +1,10 @@
+Creatures Sprites GIMP PlugIn 
+
+Copy the files c16image.exe, s16image.exe, blkimage.exe into
+the plug-ins directory of the gimp-installation.
+
+If GIMP is running you need to restart it before you can load
+c16, s16 or blk files.
+
+Enjoy,
+Tina

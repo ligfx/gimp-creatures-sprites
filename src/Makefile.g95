@@ -1,25 +1,4 @@
-#
-# Makefile for the c16 convertion tools 
-# for use with Mingw (probably Cygwin too)
-#
-# Name of the compiler:
-#
-CC=gcc
-
-
-#
-# prefix is the gimp installationpath and plugindir the
-# plugin directory of the gimp
-#
-DESTDIR=
-PREFIX=c:/Programme/GIMP
-PLUGINDIR=$(PREFIX)/plug-ins
-BINDIR=$(PREFIX)/bin
-PLUGIN_NAME = creatures-sprites
-LOCALEDIR = $(PREFIX)/locale
-DATADIR = $(PREFIX)/help
-
-
+include ..\makeinc.g95
 
 
 #
@@ -37,7 +16,7 @@ OBJS=blkimage.o c16image.o s16image.o
 
 #
 # Compiler-Flags. These flags work for me. Uncomment the following
-# to enable Debug-Options (eg. mtrace, ...)
+# to enable Debug-Options 
 #
 #CDEBUG= -ggdb -Wall
 CDEBUG=
@@ -48,12 +27,12 @@ CDEBUG=
 OPTIMISATION=-O2 -s
 #OPTIMISATION=
 
-CFLAGS=$(CDEBUG) $(OPTIMISATION)  \
-				-fnative-struct $(INCDIR) -DLOCALEDIR=\""$(LOCALEDIR)"\"	\
-				-DDATADIR=\""$(DATADIR)"\"	-DPLUGIN_NAME=\""$(PLUGIN_NAME)"\"
+CFLAGS=$(CDEBUG) $(OPTIMISATION)  -fnative-struct $(INCDIR) -DLOCALEDIR=\"$(LOCALEDIR)\"	\
+			-DDATADIR=\"$(DATADIR)\"	-DPLUGIN_NAME=\"$(PLUGIN_NAME)\"
 
 
-LDFLAGS=$(LIBDIR) -Wl,--subsystem,windows -mwindows -lgimpui-1.2 -lgimp-1.2 -lgimpi -lgtk-1.3 -lgdk-1.3 -lglib-1.3 -lgmodule-1.3 -lc16
+LDFLAGS=$(LIBDIR) -Wl,--subsystem,windows -mwindows -lgimpui-1.2 \
+	-lgimp-1.2 -lgimpi -lgtk-1.3 -lgdk-1.3 -lglib-1.3 -lgmodule-1.3 -lc16
 
 
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-09-18 19:45+0200\n"
+"POT-Creation-Date: 2001-09-21 15:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,59 +14,66 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/blkimage.c:118
+#: src/blkimage.c:121
 msgid "Loads files in blk image format"
 msgstr ""
 
-#: src/blkimage.c:119
+#: src/blkimage.c:122
 msgid "This plug-in loads Creatures backgroundimage files"
 msgstr ""
 
-#: src/blkimage.c:132
+#: src/blkimage.c:135
 msgid "Saves files in blk image format"
 msgstr ""
 
-#: src/blkimage.c:133
+#: src/blkimage.c:136
 msgid "This plug-in saves Creatures backgroundimage files"
 msgstr ""
 
-#: src/blkimage.c:260
-msgid "Background"
-msgstr ""
-
-#: src/blkimage.c:276 src/c16image.c:278 src/s16image.c:279
+#: src/blkimage.c:271 src/blkimage.c:272 src/c16image.c:279 src/c16image.c:280
+#: src/s16image.c:283 src/s16image.c:284
 #, c-format
 msgid "Loading %s, please wait..."
 msgstr ""
 
-#: src/c16image.c:118
+#: src/blkimage.c:275
+msgid "Background"
+msgstr ""
+
+#: src/blkimage.c:347 src/blkimage.c:348 src/c16image.c:391 src/c16image.c:392
+#: src/s16image.c:396 src/s16image.c:397
+#, c-format
+msgid "Saving %s, please wait..."
+msgstr ""
+
+#: src/c16image.c:116
 msgid "Loads files in c16 image format"
 msgstr ""
 
-#: src/c16image.c:119
+#: src/c16image.c:117
 msgid "This plug-in loads Creatures c16image files"
 msgstr ""
 
-#: src/c16image.c:132
+#: src/c16image.c:130
 msgid "Saves files in c16 image format"
 msgstr ""
 
-#: src/c16image.c:133
+#: src/c16image.c:131
 msgid "This plug-in saves Creatures c16image files"
 msgstr ""
 
-#: src/s16image.c:120
+#: src/s16image.c:122
 msgid "Loads files in s16 image format"
 msgstr ""
 
-#: src/s16image.c:121
+#: src/s16image.c:123
 msgid "This plug-in loads Creatures s16image files"
 msgstr ""
 
-#: src/s16image.c:134
+#: src/s16image.c:136
 msgid "Saves files in s16 image format"
 msgstr ""
 
-#: src/s16image.c:135
+#: src/s16image.c:137
 msgid "This plug-in saves Creatures s16image files"
 msgstr ""

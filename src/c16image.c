@@ -168,6 +168,8 @@ run (gchar      *name, /* I - Name of filter program */
 
   run_mode = param[0].data.d_int32; 
 
+  INIT_I18N();
+  
   /* Load a c16image.... */
   if (strcmp (name, "file_c16_load") == 0)
     {
@@ -284,7 +286,7 @@ static gint load_c16image (char *filename)
 
   
   
-  percentagesteps = (gdouble)100/count;
+  percentagesteps = (gdouble)1/count;
 
   for(i=0; i<count; i++)
     { 
@@ -308,7 +310,7 @@ static gint load_c16image (char *filename)
           gimp_pixel_rgn_set_rect (&pixel_rgn, pixel[j], 0, j, drawable->width, 1);
           g_free (pixel[j]);
         }
-      if(percentagesteps * (i + 1) <= 100)
+      if(percentagesteps * (i + 1) <= 1)
         gimp_progress_update (percentagesteps * (i + 1));
     }
   g_free (imageswidth);
@@ -334,10 +336,14 @@ save_c16image (char* filename,
   GimpExportReturnType export;
   gint16 success;
   gint bytes;
+  gdouble percentagesteps;
+  gchar *name;
+  gchar *basename;
+  
+
   type = GIMP_RGB_IMAGE;
   export = GIMP_EXPORT_EXPORT;
   success = 0;
-  
   layers = gimp_image_get_layers (image_ID, &nlayers);
   for( i=0; i < nlayers; i++)
     {
@@ -356,7 +362,7 @@ save_c16image (char* filename,
   if(type != GIMP_RGB_IMAGE
      && type != GIMP_RGBA_IMAGE)
     {
-      gimp_ui_init ("creatures-sprites", FALSE);
+      gimp_ui_init ("c16image", FALSE);
       export = gimp_export_image (&image_ID, &drawable_ID, "C16", 
                                   GIMP_EXPORT_CAN_HANDLE_RGB
                                   |GIMP_EXPORT_CAN_HANDLE_ALPHA
@@ -374,6 +380,21 @@ save_c16image (char* filename,
    * therefore only accept (exported) rgb images*/
   if( export == GIMP_EXPORT_EXPORT)
     {
+
+      basename = strrchr (filename, G_DIR_SEPARATOR);
+      if (basename == NULL)
+        basename = filename;
+      else
+        basename++;
+      
+      name = g_new (gchar,
+                    strlen (_("Saving %s, please wait...")) + strlen (basename) - 1);
+      sprintf (name, _("Saving %s, please wait..."), basename);
+      
+      gimp_progress_init ( name );
+
+      percentagesteps = (gdouble)1/nlayers;
+
       for (i=0; i<nlayers; i++)
         {
           drawable = gimp_drawable_get (layers[nlayers - i - 1]);
@@ -413,6 +434,9 @@ save_c16image (char* filename,
           
           pic[i] = c16_image_new_with_rgb (drawable->width, drawable->height,
                                            pixels);
+
+          if(percentagesteps * (i+1) <=1)
+            gimp_progress_update (percentagesteps * (i + 1));
 
           /* free memory of everything that we no longer need */
           for(j=0; j<drawable->height; j++)

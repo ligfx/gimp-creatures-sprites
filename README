@@ -8,8 +8,9 @@ This package features currently:
 
  - Loading and Saving of blk, s16 and c16 images
 
-
-You need the libc16 ver. >=0.3 in order to build and run this package.
+Linux:
+You need the libc16(-dev) ver. >=0.3 and gimp-dev packages in order 
+to build and run this package.
 To build and install the sourcepackage, just...
 
 	./configure
@@ -18,7 +19,20 @@ To build and install the sourcepackage, just...
 
 ...and it's there.
 
-Note: Loading and saving of big images may take some time!
+Windows:
+You need the libc16-dev package ver >=0.3, gimp-dev, gtk+-dev and glib-dev
+packages in order to build (not run) this package. (The last three are
+available from the Gimp for Windows homepage)
+To build and install the sourcepackage, just...
+
+	Set your gimp installationpath in makeinc.g95
+	Set your library and include path in src/Makefile.g95
+
+	make -f Makefile.g95
+	make install (or copy the three exe's to GIMP\plug-ins)
+
+... and it's there too.
+
 
 Enjoy it,
 Tina
