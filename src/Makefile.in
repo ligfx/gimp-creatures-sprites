@@ -103,11 +103,17 @@ VERSION = @VERSION@
 
 VERSION_FLAGS = -DVERSION=\"@PLUGIN_VERSION@\"
 
-bin_PROGRAMS = creatures-sprites
+bin_PROGRAMS = blkimage c16image s16image
 
 bindir = $(GIMP_PLUGIN_DIR)/plug-ins
 
-creatures_sprites_SOURCES =  	plugin-intl.h		main.c			main.h		
+blkimage_SOURCES =  	plugin-intl.h		blkimage.c 
+
+
+c16image_SOURCES =  	plugin-intl.h		c16image.c 
+
+
+s16image_SOURCES =  	plugin-intl.h		s16image.c 
 
 
 INCLUDES =  	-I$(top_srcdir)/intl 	@GIMP_CFLAGS@
@@ -128,10 +134,18 @@ DEFS = @DEFS@ -I. -I$(srcdir) -I..
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
-creatures_sprites_OBJECTS =  main.o
-creatures_sprites_LDADD = $(LDADD)
-creatures_sprites_DEPENDENCIES = 
-creatures_sprites_LDFLAGS = 
+blkimage_OBJECTS =  blkimage.o
+blkimage_LDADD = $(LDADD)
+blkimage_DEPENDENCIES = 
+blkimage_LDFLAGS = 
+c16image_OBJECTS =  c16image.o
+c16image_LDADD = $(LDADD)
+c16image_DEPENDENCIES = 
+c16image_LDFLAGS = 
+s16image_OBJECTS =  s16image.o
+s16image_LDADD = $(LDADD)
+s16image_DEPENDENCIES = 
+s16image_LDFLAGS = 
 CFLAGS = @CFLAGS@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
@@ -143,9 +157,9 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = tar
 GZIP_ENV = --best
-DEP_FILES =  .deps/main.P
-SOURCES = $(creatures_sprites_SOURCES)
-OBJECTS = $(creatures_sprites_OBJECTS)
+DEP_FILES =  .deps/blkimage.P .deps/c16image.P .deps/s16image.P
+SOURCES = $(blkimage_SOURCES) $(c16image_SOURCES) $(s16image_SOURCES)
+OBJECTS = $(blkimage_OBJECTS) $(c16image_OBJECTS) $(s16image_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -199,9 +213,17 @@ distclean-compile:
 
 maintainer-clean-compile:
 
-creatures-sprites: $(creatures_sprites_OBJECTS) $(creatures_sprites_DEPENDENCIES)
-	@rm -f creatures-sprites
-	$(LINK) $(creatures_sprites_LDFLAGS) $(creatures_sprites_OBJECTS) $(creatures_sprites_LDADD) $(LIBS)
+blkimage: $(blkimage_OBJECTS) $(blkimage_DEPENDENCIES)
+	@rm -f blkimage
+	$(LINK) $(blkimage_LDFLAGS) $(blkimage_OBJECTS) $(blkimage_LDADD) $(LIBS)
+
+c16image: $(c16image_OBJECTS) $(c16image_DEPENDENCIES)
+	@rm -f c16image
+	$(LINK) $(c16image_LDFLAGS) $(c16image_OBJECTS) $(c16image_LDADD) $(LIBS)
+
+s16image: $(s16image_OBJECTS) $(s16image_DEPENDENCIES)
+	@rm -f s16image
+	$(LINK) $(s16image_LDFLAGS) $(s16image_OBJECTS) $(s16image_LDADD) $(LIBS)
 
 tags: TAGS
 

@@ -1,6 +1,7 @@
 Source: creatures-sprites
 Section: graphics
 Priority: optional
+Build-Depends: debhelper (>=2.0), libc16-dev (>0.2), libgimp1.2-dev (>= 1.2.0)
 Maintainer: Tina Hirsch <tehirsch@nexgo.de>
 Standards-Version: 3.0.1
 

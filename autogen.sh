@@ -8,7 +8,7 @@ ORIGDIR=`pwd`
 cd $srcdir
 PROJECT="Creatures Sprites"
 TEST_TYPE=-f
-FILE=src/main.c
+FILE=src/blkimage.c
 
 DIE=0
 

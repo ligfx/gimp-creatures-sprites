@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.1 2001/09/04 18:51:53 cevina Exp $
+## $Id: Makefile.am,v 1.2 2001/09/18 18:40:15 cevina Exp $
 ## Process this file with automake to produce Makefile.in
 
 EXTRA_DIST = \

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-09-02 18:25+0200\n"
+"POT-Creation-Date: 2001-09-18 19:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,28 +14,59 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:121
+#: src/blkimage.c:118
 msgid "Loads files in blk image format"
 msgstr ""
 
-#: src/main.c:122
+#: src/blkimage.c:119
 msgid "This plug-in loads Creatures backgroundimage files"
 msgstr ""
 
-#: src/main.c:135
+#: src/blkimage.c:132
 msgid "Saves files in blk image format"
 msgstr ""
 
-#: src/main.c:136
+#: src/blkimage.c:133
 msgid "This plug-in saves Creatures backgroundimage files"
 msgstr ""
 
-#: src/main.c:257
-msgid ""
-"Can't allocate new image\n"
-"or file does not exist!\n"
+#: src/blkimage.c:260
+msgid "Background"
 msgstr ""
 
-#: src/main.c:262
-msgid "Background"
+#: src/blkimage.c:276 src/c16image.c:278 src/s16image.c:279
+#, c-format
+msgid "Loading %s, please wait..."
+msgstr ""
+
+#: src/c16image.c:118
+msgid "Loads files in c16 image format"
+msgstr ""
+
+#: src/c16image.c:119
+msgid "This plug-in loads Creatures c16image files"
+msgstr ""
+
+#: src/c16image.c:132
+msgid "Saves files in c16 image format"
+msgstr ""
+
+#: src/c16image.c:133
+msgid "This plug-in saves Creatures c16image files"
+msgstr ""
+
+#: src/s16image.c:120
+msgid "Loads files in s16 image format"
+msgstr ""
+
+#: src/s16image.c:121
+msgid "This plug-in loads Creatures s16image files"
+msgstr ""
+
+#: src/s16image.c:134
+msgid "Saves files in s16 image format"
+msgstr ""
+
+#: src/s16image.c:135
+msgid "This plug-in saves Creatures s16image files"
 msgstr ""

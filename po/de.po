@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Creatures Sprite Gimp Plugin\n"
-"POT-Creation-Date: 2001-09-02 18:25+0200\n"
+"POT-Creation-Date: 2001-09-18 19:45+0200\n"
 "PO-Revision-Date: 2001-09-01 23:39+0200\n"
 "Last-Translator: Tina Hirsch <tehirsch@nexgo.de>\n"
 "Language-Team: German\n"
@@ -9,30 +9,61 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:121
+#: src/blkimage.c:118
 msgid "Loads files in blk image format"
 msgstr "Lädt Dateien im blk-Bildformat"
 
-#: src/main.c:122
+#: src/blkimage.c:119
 msgid "This plug-in loads Creatures backgroundimage files"
 msgstr "Dieses Plug-in lädt Hintergrundbilder von Creatures"
 
-#: src/main.c:135
+#: src/blkimage.c:132
 msgid "Saves files in blk image format"
 msgstr "Speichert Dateien im blk-Bildformat ab"
 
-#: src/main.c:136
+#: src/blkimage.c:133
 msgid "This plug-in saves Creatures backgroundimage files"
 msgstr "Dieses Plug-in speichert Hintergrundbilder von Creatures"
 
-#: src/main.c:257
-msgid ""
-"Can't allocate new image\n"
-"or file does not exist!\n"
-msgstr ""
-"Konnte neues Bild nicht alloziieren\n"
-"oder Datei existiert nicht!\n"
-
-#: src/main.c:262
+#: src/blkimage.c:260
 msgid "Background"
 msgstr "Hintergrund"
+
+#: src/blkimage.c:276 src/c16image.c:278 src/s16image.c:279
+#, c-format
+msgid "Loading %s, please wait..."
+msgstr "Lade %s, bitte warten..."
+
+#: src/c16image.c:118
+msgid "Loads files in c16 image format"
+msgstr "Lädt Dateien im c16-Bildformat"
+
+#: src/c16image.c:119
+msgid "This plug-in loads Creatures c16image files"
+msgstr "Dieses Plug-in lädt C16-Bilder von Creatures"
+
+
+#: src/c16image.c:132
+msgid "Saves files in c16 image format"
+msgstr "Speichert Dateien im C16-Bildformat ab"
+
+#: src/c16image.c:133
+msgid "This plug-in saves Creatures c16image files"
+msgstr "Dieses Plug-in speichert C16-Bilder von Creatures"
+
+#: src/s16image.c:120
+msgid "Loads files in s16 image format"
+msgstr "Lädt Dateien im s16-Bildformat"
+
+#: src/s16image.c:121
+msgid "This plug-in loads Creatures s16image files"
+msgstr "Dieses Plug-in lädt S16-Bilder von Creatures"
+
+#: src/s16image.c:134
+msgid "Saves files in s16 image format"
+msgstr "Speichert Dateien im S16-Bildformat ab"
+
+#: src/s16image.c:135
+msgid "This plug-in saves Creatures s16image files"
+msgstr "Dieses Plug-in speichert S16-Bilder von Creatures"
+
