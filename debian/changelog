@@ -1,6 +1,12 @@
+creatures-sprites (0.2.0-1) unstable; urgency=low
+
+  * Added support for loading and saving of s16 and c16
+
+ -- Tina Hirsch <tehirsch@nexgo.de>  Wed, 19 Sep 2001 13:00:00 -0200
+
 creatures-sprites (0.1.0cvs-1) unstable; urgency=low
 
-  * First cvs upload.
+  * First cvs upload. (Only blk is supported)
 
  -- Tina Hirsch <tehirsch@nexgo.de>  Sun, 31 Aug 2001 23:23:41 -0200
 

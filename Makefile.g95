@@ -1,0 +1,34 @@
+# Programm to 'clean' after compilation
+# probably 'del' for windows
+#
+export RM=rm -f
+
+#
+# prefix is the gimp installationpath and plugindir the
+# plugin directory of the gimp
+#
+DESTDIR=
+PREFIX=c:/Programme/GIMP
+PLUGINDIR=$(PREFIX)/plug-ins
+BINDIR=$(PREFIX)/bin
+PLUGIN_NAME = creatures-sprites
+LOCALEDIR = $(PREFIX)/locale
+DATADIR = $(PREFIX)/help
+
+
+LOCALSDIR = po
+SRCDIR = src
+
+all:
+	$(MAKE) -C $(SRCDIR) -f Makefile.g95 
+
+clean:
+	$(MAKE) -C $(SRCDIR) -f Makefile.g95 clean
+	$(RM) $(LOCALESDIR)/*.mo
+
+install: $(SRCDIR)/*.c
+	$(MAKE) -C $(SRCDIR) -f Makefile.g95 install
+	msgfmt --verbose -o $(LOCALSDIR)/$(PLUGIN_NAME).mo $(LOCALSDIR)/de.po
+	cp $(LOCALSDIR)/$(PLUGIN_NAME).mo $(LOCALEDIR)/de/LC_MESSAGES
+
+.PHONY: clean

@@ -16,7 +16,9 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifndef __WIN32
 #include "config.h"
+#endif
 
 #include <libgimp/gimp.h>
 #include <libgimp/gimpui.h>
@@ -239,7 +241,7 @@ static gint load_s16image (char *filename)
   guchar **pixel;  /*t he pixel data */
   C16Sprite_p sprite; /* C16 info pointer  */
   C16Image_p *imagearray;
-  gchar name[256];
+  gchar *name;
   gchar *basename, *ptr;
   gint32 *imageswidth, *imagesheight;
   
@@ -276,7 +278,9 @@ static gint load_s16image (char *filename)
   else
     basename++;
 
-  snprintf (name, 256, _("Loading %s, please wait..."), basename);
+	name = g_new (gchar,
+								strlen (_("Loading %s, please wait...")) + strlen (basename) - 1);
+  sprintf (name, _("Loading %s, please wait..."), basename);
   gimp_progress_init ( name );
   
   ptr = strrchr (basename, '.');
@@ -284,10 +288,12 @@ static gint load_s16image (char *filename)
     *ptr = '\0';
   
   percentagesteps = (gdouble)100/count;
-
+	
   for(i=0; i<count; i++)
     {
-      snprintf (name, 256, "%s_%i", basename, i);
+			g_free (name);
+			name = g_new (gchar, strlen (basename) + 13);
+      sprintf (name, "%s_%i", basename, i);
 
       layer = gimp_layer_new (image, name, imageswidth[i], imagesheight[i],
                               GIMP_RGBA_IMAGE, 100, GIMP_NORMAL_MODE);                                                        
@@ -302,13 +308,14 @@ static gint load_s16image (char *filename)
       for(j=0; j<imagesheight[i]; j++)                                                        
         {                                                                              
           gimp_pixel_rgn_set_rect (&pixel_rgn, pixel[j], 0, j, drawable->width, 1);      
-          free (pixel[j]);                                                               
+          g_free (pixel[j]);                                                               
         }
-      free (pixel);
+      g_free (pixel);
       if(percentagesteps * (i+1) <=100)
         gimp_progress_update (percentagesteps * (i + 1));
     }
 
+	g_free (name);
   g_free (imageswidth);
   g_free (imagesheight);
   c16_sprite_free (sprite);

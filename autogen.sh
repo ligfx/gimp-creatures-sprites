@@ -121,7 +121,7 @@ for i in $autogen_dirs; do
 		(autoheader --version)  < /dev/null > /dev/null 2>&1 && autoheader
 	fi
 
-	automake --add-missing $am_opt
+	automake -v -a $am_opt
 	autoconf
 done
 

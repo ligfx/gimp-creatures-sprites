@@ -16,7 +16,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifndef __WIN32
 #include "config.h"
+#endif
+
 
 #include <libgimp/gimp.h>
 #include <libgimp/gimpui.h>
@@ -238,7 +241,7 @@ static gint load_blkimage (char *filename)
   gdouble percentagesteps;
   gint32 image;
   gint32 layer;
-  gchar name[256];
+  gchar *name;
   gchar *basename;
   GimpDrawable *drawable;
   GimpPixelRgn pixel_rgn;
@@ -272,8 +275,9 @@ static gint load_blkimage (char *filename)
   else
     basename++;
 
-  
-  snprintf (name, 256, _("Loading %s, please wait..."), basename);
+	name = g_new (gchar,
+								strlen (_("Loading %s, please wait...")) + strlen (basename) - 1);
+  sprintf (name, _("Loading %s, please wait..."), basename);
   gimp_progress_init ( name );
 
   percentagesteps = (gdouble)100/height;
@@ -282,12 +286,13 @@ static gint load_blkimage (char *filename)
   for(i=0; i<height; i++)
     {
       gimp_pixel_rgn_set_rect (&pixel_rgn, pixel[i], 0, i, drawable->width, 1);
-      free (pixel[i]);
+      g_free (pixel[i]);
       if(percentagesteps * (i+1) <= 100)
         gimp_progress_update (percentagesteps * (i + 1));
     }
   
-  free (pixel);
+  g_free (pixel);
+	g_free (name);
   c16_sprite_free (sprite);
 
   return image;
@@ -376,11 +381,11 @@ save_blkimage (char* filename,
         }
       /* free memory of everything that we no longer need */
       for(i=0; i<drawable->height; i++)
-        free (pixels[i]);
+        g_free (pixels[i]);
       for(i=0; i<BLK_BLOCK_SIZE; i++)
-        free (ptr[i]);
-      free (pixels);
-      free (ptr);
+        g_free (ptr[i]);
+      g_free (pixels);
+      g_free (ptr);
 
       /* write the blkfile to disk */
       sprite = c16_sprite_new_with_data (S16_TYPE_565_FLAGS, blkh * blkw,

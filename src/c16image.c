@@ -23,9 +23,7 @@
 #include <libgimp/gimp.h>
 #include <libgimp/gimpui.h>
 
-#ifndef __WIN32
 #include "plugin-intl.h"
-#endif
 
 #include <c16/sprite.h>
 #include <c16/image.h>
@@ -237,7 +235,7 @@ static gint load_c16image (char *filename)
   guchar **pixel; /* the pixel data */
   C16Sprite_p sprite;  /*C16 info pointer */
   C16Image_p *imagearray;
-  gchar name[256];
+  gchar *name;
   gint32 *imageswidth;
   gint32 *imagesheight;
   gchar *basename;
@@ -275,7 +273,9 @@ static gint load_c16image (char *filename)
   else
     basename++;
 
-  snprintf (name, 256, _("Loading %s, please wait..."), basename);
+	name = g_new (gchar,
+								strlen (_("Loading %s, please wait...")) + strlen (basename) - 1);
+	sprintf (name, _("Loading %s, please wait..."), basename);
   gimp_progress_init ( name );
   
   ptr = strrchr (basename, '.');
@@ -288,7 +288,10 @@ static gint load_c16image (char *filename)
 
   for(i=0; i<count; i++)
     { 
-      snprintf (name, 256, "%s_%i", basename, i);
+			g_free (name);
+			name = g_new (gchar, strlen (basename) + 13);
+      sprintf (name, "%s_%i", basename, i);
+
       layer = gimp_layer_new (image, name, imageswidth[i], imagesheight[i],
                               GIMP_RGBA_IMAGE, 100, GIMP_NORMAL_MODE);
       gimp_image_add_layer (image, layer, -1);
