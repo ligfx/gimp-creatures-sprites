@@ -6,10 +6,10 @@ Copyright (C) 2001  Tina Hirsch <tehirsch@nexgo.de>
 
 This package features currently:
 
- - Loading and Saving of blk images
+ - Loading and Saving of blk, s16 and c16 images
 
 
-You need the libc16 from cvs to build and run this package.
+You need the libc16 ver. >=0.3 in order to build and run this package.
 To build and install the sourcepackage, just...
 
 	./configure
@@ -17,6 +17,8 @@ To build and install the sourcepackage, just...
 	make install
 
 ...and it's there.
+
+Note: Loading and saving of big images may take some time!
 
 Enjoy it,
 Tina

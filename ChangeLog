@@ -1,4 +1,8 @@
-03.09. 2001
+20 Sep. 2001
+
+ * Can read and write c16 and s16 
+
+03 Sep. 2001
 
  * Can read and write blk files 
  * First cvs upload
