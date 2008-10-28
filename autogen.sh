@@ -197,8 +197,4 @@ if test $RC -ne 0; then
   exit $RC
 fi
 
-echo
-echo "You need also the libc16 development package in order"
-echo "to compile this plugin!"
-echo "You can download it from http://c3-ds-tools.sf.net"
 echo "Now type 'make' to compile $PROJECT."

@@ -18,11 +18,12 @@ s16image_SOURCES = \
 
 AM_CPPFLAGS = \
 	-DLOCALEDIR=\""$(LOCALEDIR)"\"		\
-	-DDATADIR=\""$(DATADIR)"\"
+	-DDATADIR=\""$(DATADIR)"\" 
 
 INCLUDES =\
 	-I$(top_srcdir)		\
 	@GIMP_CFLAGS@		\
-	-I$(includedir)
+	-I$(includedir)		\
+	@C16_CFLAGS@
 
-LDADD = $(GIMP_LIBS) -lc16
+LDADD = $(GIMP_LIBS) $(C16_LIBS)

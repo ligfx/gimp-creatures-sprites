@@ -48,7 +48,6 @@ if test "x$GCC" = "xyes"; then
 fi
 changequote([,])dnl
 
-
 GIMP_REQUIRED_VERSION=2.2.0
 
 PKG_CHECK_MODULES(GIMP,
@@ -60,6 +59,9 @@ AC_SUBST(GIMP_LIBS)
 GIMP_LIBDIR=`$PKG_CONFIG --variable=gimplibdir gimp-2.0`
 AC_SUBST(GIMP_LIBDIR)
 
+PKG_CHECK_MODULES(C16, c16)
+AC_SUBST(C16_CFLAGS)
+AC_SUBST(C16_LIBS)
 
 dnl i18n stuff
 
@@ -81,7 +83,6 @@ DATADIR='${datadir}/plugin_name'
 
 AC_SUBST(LOCALEDIR)
 AC_SUBST(DATADIR)
-
 
 AC_MSG_CHECKING([if GTK+ is version 2.7.0 or newer])
 if $PKG_CONFIG --atleast-version=2.7.0 gtk+-2.0; then
