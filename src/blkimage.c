@@ -114,7 +114,7 @@ query (void)
 
   /* register help and locales */
   gimp_plugin_domain_register (PLUGIN_NAME, LOCALEDIR);
-  gimp_plugin_help_register (DATADIR"/help");
+  gimp_plugin_help_register (DATADIR"/help", NULL);
 
   /* register the procedures in the database */
   gimp_install_procedure ("file_blk_load",
@@ -160,7 +160,7 @@ run (gchar      *name, /* I - Name of filter program */
 {
   GimpParam   *values; /* return values */
   gint32 image_ID;
-  GimpRunModeType run_mode;
+  GimpRunMode run_mode;
   gint32 drawable_ID;
   GimpDrawable *drawable;
   gint success;
@@ -177,7 +177,7 @@ run (gchar      *name, /* I - Name of filter program */
   drawable = gimp_drawable_get (drawable_ID);
   run_mode = param[0].data.d_int32; 
 
-  INIT_I18N();
+/*  INIT_I18N(); */
   
   /* Load a blkimage.... */
   if (strcmp (name, "file_blk_load") == 0)
@@ -315,7 +315,7 @@ save_blkimage (char* filename,
   int i, k, j, type, blkh, blkw;
   guchar **ptr;
   div_t euklid;
-  GimpExportReturnType export;
+  GimpExportReturn export;
   gint success;
   gchar *name;
   gchar *basename;

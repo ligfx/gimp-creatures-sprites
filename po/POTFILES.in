@@ -1,4 +1,5 @@
 # List of source files containing translatable strings.
+
 src/blkimage.c
 src/c16image.c
 src/s16image.c

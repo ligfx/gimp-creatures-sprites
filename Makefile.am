@@ -1,8 +1,15 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = intl po src help
+SUBDIRS = po src help
 
 EXTRA_DIST = \
 	BUGS			\
-	pixmaps/zoom_in.xpm	\
-	pixmaps/zoom_out.xpm
+	autogen.sh		\
+        intltool-extract.in	\
+        intltool-merge.in	\
+        intltool-update.in
+
+DISTCLEANFILES = \
+	intltool-extract	\
+	intltool-merge		\
+	intltool-update

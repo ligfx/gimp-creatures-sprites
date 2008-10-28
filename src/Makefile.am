@@ -1,10 +1,8 @@
 ## Process this file with automake to produce Makefile.in
 
-VERSION_FLAGS = -DVERSION=\"@PLUGIN_VERSION@\"
-
 bin_PROGRAMS = blkimage c16image s16image
 
-bindir = $(GIMP_PLUGIN_DIR)/plug-ins
+bindir = $(GIMP_LIBDIR)/plug-ins
 
 blkimage_SOURCES = \
 	plugin-intl.h	\
@@ -18,25 +16,13 @@ s16image_SOURCES = \
 	plugin-intl.h	\
 	s16image.c 
 
-
-INCLUDES = \
-	-I$(top_srcdir)/intl \
-	@GIMP_CFLAGS@
-	$(VERSION_FLAGS)
-
-LDADD = \
-	$(GIMP_LIBS)	\
-	$(INTLLIBS) \
-	-lc16
-
 AM_CPPFLAGS = \
 	-DLOCALEDIR=\""$(LOCALEDIR)"\"		\
-	-DDATADIR=\""$(DATADIR)"\"		\
-	-DPLUGIN_NAME=\""$(PLUGIN_NAME)"\"
+	-DDATADIR=\""$(DATADIR)"\"
 
-.PHONY: files
+INCLUDES =\
+	-I$(top_srcdir)		\
+	@GIMP_CFLAGS@		\
+	-I$(includedir)
 
-files:
-	@files=`ls $(DISTFILES) 2> /dev/null`; for p in $$files; do \
-	  echo $$p; \
-	done
+LDADD = $(GIMP_LIBS) -lc16

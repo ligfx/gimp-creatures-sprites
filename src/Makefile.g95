@@ -1,12 +1,12 @@
-include ..\makeinc.g95
+include ../makeinc.g95
 
 
 #
 # Here you can set any other library and/or include paths you need
 # Mingw standard paths shouldn't need to be given.
 #
-LIBDIR=-Lc:/developer/gimp/lib
-INCDIR=-Ic:/developer/gimp/include -Ic:/developer/gimp/include/gdk -Ic:/developer/gimp/include/gtk
+LIBDIR=-L/usr/local/lib
+INCDIR=-I/usr/local/include
 
 #
 # Different targets and objects. You shouldn't change anything here!
@@ -31,8 +31,8 @@ CFLAGS=$(CDEBUG) $(OPTIMISATION)  -fnative-struct $(INCDIR) -DLOCALEDIR=\"$(LOCA
 			-DDATADIR=\"$(DATADIR)\"	-DPLUGIN_NAME=\"$(PLUGIN_NAME)\"
 
 
-LDFLAGS=$(LIBDIR) -Wl,--subsystem,windows -mwindows -lgimpui-1.2 \
-	-lgimp-1.2 -lgimpi -lgtk-1.3 -lgdk-1.3 -lglib-1.3 -lgmodule-1.3 -lc16
+LDFLAGS=$(LIBDIR) -Wl,--subsystem,windows -mwindows -lgimpui-2.0 \
+	-lgimp-2.0 -lglib-2.0 -lc16
 
 
 

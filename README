@@ -25,14 +25,10 @@ packages in order to build (not run) this package. (The last three are
 available from the Gimp for Windows homepage)
 To build and install the sourcepackage, just...
 
-	Set your gimp installationpath in makeinc.g95
-	Set your library and include path in src/Makefile.g95
-
 	make -f Makefile.g95
-	make install (or copy the three exe's to GIMP\plug-ins)
+	Copy the three exe's in src/ to GIMP's plug-ins directory
 
 ... and it's there too.
 
 
-Enjoy it,
-Tina
+Enjoy

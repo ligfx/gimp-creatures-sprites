@@ -1,75 +1,45 @@
-/* LIBGIMP - The GIMP Library
- * Copyright (C) 1995-1997 Peter Mattis and Spencer Kimball
+/* plugin-intl.h
  *
- * plugin-intl.h
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
  * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+ * THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * 
+ * Except as contained in this notice, the name of the Author of the
+ * Software shall not be used in advertising or otherwise to promote the
+ * sale, use or other dealings in this Software without prior written
+ * authorization from the Author.
  */
 
 #ifndef __PLUGIN_INTL_H__
 #define __PLUGIN_INTL_H__
 
-#include <locale.h>
 
-#ifdef ENABLE_NLS
-#    include <libintl.h>
-#    define _(String) gettext (String)
-#    ifdef gettext_noop
-#        define N_(String) gettext_noop (String)
-#    else
-#        define N_(String) (String)
-#    endif
+#ifndef GETTEXT_PACKAGE
+#error "config.h must be included prior to plugin-intl.h"
+#endif
+
+#include <libintl.h>
+
+#define _(String) gettext (String)
+
+#ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
 #else
-/* Stubs that do something close enough.  */
-#    define textdomain(String) (String)
-#    define gettext(String) (String)
-#    define dgettext(Domain,Message) (Message)
-#    define dcgettext(Domain,Message,Type) (Message)
-#    define bindtextdomain(Domain,Directory) (Domain)
-#    define _(String) (String)
 #    define N_(String) (String)
 #endif
 
-#define INIT_LOCALE(domain)	G_STMT_START{	\
-	gtk_set_locale ();			\
-	setlocale (LC_NUMERIC, "C");		\
-	bindtextdomain (domain, LOCALEDIR);	\
-	textdomain (domain);			\
-				}G_STMT_END
-
-
-#ifdef HAVE_LC_MESSAGES
-#define INIT_I18N()	G_STMT_START{	        \
-  setlocale(LC_MESSAGES, ""); 			\
-  bindtextdomain("gimp-libgimp", LOCALEDIR);    \
-  bindtextdomain(PLUGIN_NAME, LOCALEDIR);	\
-  textdomain(PLUGIN_NAME);		      	\
-  			}G_STMT_END
-#else
-#define INIT_I18N()	G_STMT_START{		\
-  bindtextdomain("gimp-libgimp", LOCALEDIR);    \
-  bindtextdomain(PLUGIN_NAME, LOCALEDIR);	\
-  textdomain(PLUGIN_NAME);			\
-  			}G_STMT_END
-#endif
-
-#define INIT_I18N_UI()	G_STMT_START{	\
-  gtk_set_locale();			\
-  setlocale (LC_NUMERIC, "C");		\
-  INIT_I18N();				\
-			}G_STMT_END
 
 #endif /* __PLUGIN_INTL_H__ */

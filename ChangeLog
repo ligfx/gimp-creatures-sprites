@@ -1,3 +1,8 @@
+09 Jan. 2008
+
+ * Fixed to work with GIMP 2
+ * Whole autotools structure changed (copied from gimp-plugin-template)
+
 20 Sep. 2001
 
  * Can read and write c16 and s16 

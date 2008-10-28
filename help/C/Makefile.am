@@ -3,14 +3,7 @@
 helpdatadir = $(DATADIR)/help/C
 
 helpdata_DATA = \
-        creatures-sprites.html	\
+	creatures-sprites.html	\
 	index.html
 
 EXTRA_DIST = $(helpdata_DATA)
-
-.PHONY: files
-
-files:
-	@files=`ls $(DISTFILES) 2> /dev/null`; for p in $$files; do \
-	  echo $$p; \
-	done

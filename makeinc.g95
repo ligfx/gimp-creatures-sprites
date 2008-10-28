@@ -1,4 +1,4 @@
-# Programm to 'clean' after compilation
+# Program to 'clean' after compilation
 #
 RM=rm -f
 
@@ -11,16 +11,26 @@ CC=gcc
 # prefix is the gimp installationpath and plugindir the
 # plugin directory of the gimp
 #
-DESTDIR=
-PREFIX=c:/Programme/GIMP
-PLUGINDIR=$(PREFIX)/plug-ins
-BINDIR=$(PREFIX)/bin
+# MinGW can't access the Windows drive, and then there
+# are language issues (I have c:/Program Files/GIMP)
+# So the stuff below seems to be useless
+# Cygwin might be able to make it work, but I have no idea
+#
+#DESTDIR=
+#PREFIX=c:/Programme/GIMP
+#PLUGINDIR=$(PREFIX)/lib/gimp/1.2/plug-ins
+#BINDIR=$(PREFIX)/bin
 PLUGIN_NAME = creatures-sprites
-LOCALEDIR = $(PREFIX)/locale
-DATADIR = $(PREFIX)/help
-
+#LOCALEDIR = $(PREFIX)/lib/locale
+#DATADIR = $(PREFIX)/share/gimp/1.2/help
 
 # package dirs
 LOCALSDIR = po
 SRCDIR = src
 
+#
+# Here you can set any other library and/or include paths you need
+# Mingw standard paths shouldn't need to be given.
+#
+LIBDIR=-L/usr/local/lib
+INCDIR=-I/usr/local/include

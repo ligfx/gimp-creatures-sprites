@@ -6,5 +6,4 @@ the plug-ins directory of the gimp-installation.
 If GIMP is running you need to restart it before you can load
 c16, s16 or blk files.
 
-Enjoy,
-Tina
+Enjoy

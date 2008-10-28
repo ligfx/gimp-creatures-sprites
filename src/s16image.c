@@ -115,7 +115,7 @@ query (void)
   
   /* register help and locales */
   gimp_plugin_domain_register (PLUGIN_NAME, LOCALEDIR);
-  gimp_plugin_help_register (DATADIR"/help");
+  gimp_plugin_help_register (DATADIR"/help", NULL);
 
   /* register the procedures in the database */
   gimp_install_procedure ("file_s16_load",
@@ -160,7 +160,7 @@ run (gchar      *name, /* I - Name of filter program */
 {
   GimpParam   *values; /* return values */
   gint32 image_ID;
-  GimpRunModeType run_mode;
+  GimpRunMode run_mode;
   gint success;
   
   success = 0;
@@ -172,7 +172,7 @@ run (gchar      *name, /* I - Name of filter program */
   *return_vals  = values;
   run_mode = param[0].data.d_int32;
 
-  INIT_I18N();
+/*  INIT_I18N(); */
           
   /* Load a s16image.... */
   if (strcmp (name, "file_s16_load") == 0)
@@ -337,7 +337,7 @@ save_s16image (char* filename,
   C16Sprite_p sprite;
   C16Image_p *pic;
   int i, j, k, type;
-  GimpExportReturnType export;
+  GimpExportReturn export;
   gint16 success;
   gint bytes;
   gchar *name;
@@ -376,7 +376,7 @@ save_s16image (char* filename,
     }
   else
     {
-      image_ID = gimp_channel_ops_duplicate (image_ID);
+      image_ID = gimp_image_duplicate (image_ID);
       layers = gimp_image_get_layers (image_ID, &nlayers);
     }
 
@@ -403,7 +403,7 @@ save_s16image (char* filename,
       for ( i=0; i<nlayers; i++)
         {
           drawable = gimp_drawable_get (layers[nlayers - i - 1]);
-          bytes = gimp_drawable_bytes (layers[nlayers - i - 1]);
+          bytes = gimp_drawable_bpp (layers[nlayers - i - 1]);
           
           /* pixels holds the colordata of the whole image  */
           pixels = g_new (guchar*, drawable->height);
