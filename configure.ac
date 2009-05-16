@@ -65,9 +65,6 @@ AC_CONFIG_FILES([
 Makefile
 src/Makefile
 po/Makefile.in
-help/Makefile
-help/C/Makefile
-help/images/Makefile
 ])
 
 AC_OUTPUT
