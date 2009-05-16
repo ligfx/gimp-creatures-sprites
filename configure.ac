@@ -1,52 +1,28 @@
-dnl Process this file with autoconf to produce a configure script.
-
 AC_PREREQ(2.54)
 
-dnl Name your plug-in here
-m4_define([plugin_name], [creature-sprites])
-
-dnl These three define the plug-in version number
-m4_define([plugin_major_version], [1])
-m4_define([plugin_minor_version], [3])
-m4_define([plugin_micro_version], [0])
-
-m4_define([plugin_version],
-          [plugin_major_version.plugin_minor_version.plugin_micro_version])
-
-AC_INIT([plugin_name], [plugin_version])
+AC_INIT([creatures-sprites], [1.3.0])
+AC_CONFIG_SRCDIR([src/blkimage.c])
+AM_CONFIG_HEADER(config.h)
 
 AC_DEFINE(PLUGIN_NAME, PACKAGE_NAME, [Plug-In name])
 AC_DEFINE(PLUGIN_VERSION, PACKAGE_VERSION, [Plug-In version])
 
-AC_DEFINE(PLUGIN_MAJOR_VERSION, plugin_major_version, [Plug-In major version])
-AC_DEFINE(PLUGIN_MINOR_VERSION, plugin_minor_version, [Plug-In minor version])
-AC_DEFINE(PLUGIN_MICRO_VERSION, plugin_micro_version, [Plug-In micro version])
-
-AC_CONFIG_SRCDIR([src/blkimage.c])
-AM_CONFIG_HEADER(config.h)
-
-AM_INIT_AUTOMAKE(no-define)
-
-AC_ISC_POSIX
+AM_INIT_AUTOMAKE([foreign])
 AC_PROG_CC
 AM_PROG_CC_STDC
 AC_HEADER_STDC
 
-
-ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
-
 AM_MAINTAINER_MODE
 
-
-dnl Use -Wall if we have gcc.
-changequote(,)dnl
-if test "x$GCC" = "xyes"; then
-  case " $CFLAGS " in
-  *[\ \	]-Wall[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wall" ;;
-  esac
+# Use -Wall if we have gcc.
+if test "$GCC" = "yes"; then
+	case "-Wall " in
+	"$CFLAGS ") ;;
+	*) CFLAGS="$CFLAGS -Wall" ;;
+	esac
 fi
-changequote([,])dnl
+
+# GIMP
 
 GIMP_REQUIRED_VERSION=2.2.0
 
@@ -59,18 +35,19 @@ AC_SUBST(GIMP_LIBS)
 GIMP_LIBDIR=`$PKG_CONFIG --variable=gimplibdir gimp-2.0`
 AC_SUBST(GIMP_LIBDIR)
 
+# libc16
+
 PKG_CHECK_MODULES(C16, c16)
 AC_SUBST(C16_CFLAGS)
 AC_SUBST(C16_LIBS)
 
-dnl i18n stuff
+# i18n stuff
 
-GETTEXT_PACKAGE=gimp20-plugin-template
+GETTEXT_PACKAGE=creatures-sprites
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
 				    [The gettext translation domain.])
 
-dnl Add the languages which your application supports here.
 ALL_LINGUAS="de"
 
 AC_PROG_INTLTOOL
@@ -83,33 +60,6 @@ DATADIR='${datadir}/plugin_name'
 
 AC_SUBST(LOCALEDIR)
 AC_SUBST(DATADIR)
-
-AC_MSG_CHECKING([if GTK+ is version 2.7.0 or newer])
-if $PKG_CONFIG --atleast-version=2.7.0 gtk+-2.0; then
-  have_gtk_2_7=yes
-else
-  have_gtk_2_7=no
-fi
-AC_MSG_RESULT($have_gtk_2_7)
-
-if test "x$have_gtk_2_7" != "xyes"; then
-  CPPFLAGS="$CPPFLAGS -DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED"
-fi
-
-
-AC_MSG_CHECKING([if GIMP is version 2.3.0 or newer])
-if $PKG_CONFIG --atleast-version=2.3.0 gimp-2.0; then
-  have_gimp_2_3=yes
-else
-  have_gimp_2_3=no
-fi
-AC_MSG_RESULT($have_gimp_2_3)
-
-if test "x$have_gimp_2_3" != "xyes"; then
-  CPPFLAGS="$CPPFLAGS -DGIMP_DISABLE_DEPRECATED"
-fi
-
-
 
 AC_CONFIG_FILES([
 Makefile
