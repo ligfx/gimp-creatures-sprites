@@ -3,6 +3,7 @@ AC_PREREQ(2.54)
 AC_INIT([creatures-sprites], [1.3.0])
 AC_CONFIG_SRCDIR([src/blkimage.c])
 AM_CONFIG_HEADER(config.h)
+AC_CONFIG_MACRO_DIR([.])
 
 AC_DEFINE(PLUGIN_NAME, PACKAGE_NAME, [Plug-In name])
 AC_DEFINE(PLUGIN_VERSION, PACKAGE_VERSION, [Plug-In version])
@@ -61,7 +62,9 @@ DATADIR='${datadir}/plugin_name'
 AC_SUBST(LOCALEDIR)
 AC_SUBST(DATADIR)
 
+SHAVE_INIT([], [enable])
 AC_CONFIG_FILES([
+shave
 Makefile
 src/Makefile
 po/Makefile.in

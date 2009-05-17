@@ -40,6 +40,9 @@ fi
 
 #glib-gettextize --force || exit $?
 intltoolize --force --automake || exit $?
+
+# Redefine ACLOCAL so that it will find shave.m4
+ACLOCAL="aclocal -I." \
 autoreconf --force --install --symlink --verbose || exit $?
 
 cd $olddir
